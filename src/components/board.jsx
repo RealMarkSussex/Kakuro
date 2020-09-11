@@ -1,20 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import Tile from "./tile";
 import { Container, Col, Row, Button } from "react-bootstrap";
 import { kakuroAlgorithmn } from "../services/kakuroAlgorithmn";
 
 const childrenData = [];
-let completedBoard = [];
-
-const callbackFunction = (childData) => {
-  childrenData.push(childData);
-  console.log(childData);
+//let completedBoard = [];
+const callbackFunction = (childData, submitted) => {
+  if (submitted) {
+    let index = childrenData.findIndex(
+      (child) => child.position === childData.position
+    );
+    childrenData[index] = childData;
+  } else {
+    childrenData.push(childData);
+  }
 };
 
-const completeBoard = () => {
-
-}
-const board = () => {
+const completeBoard = (setBoard) => {
+  console.log(childrenData);
+  setBoard(kakuroAlgorithmn(childrenData));
+};
+const Board = () => {
+  const [completedBoard, setBoard] = useState([]);
   let tileRows = [];
   for (let i = 0; i < 5; i++) {
     tileRows.push(
@@ -22,31 +29,53 @@ const board = () => {
         <Col>
           <Tile
             parentCallback={callbackFunction}
-            value={completedBoard.find((e) => {
-              return e.position === i + 1;
-            })}
+            completedBoard={completedBoard}
             key={i + 1}
             id={i + 1}
           />
         </Col>
         <Col>
-          <Tile parentCallback={callbackFunction} key={i + 6} id={i + 6} />
+          <Tile
+            parentCallback={callbackFunction}
+            completedBoard={completedBoard}
+            key={i + 6}
+            id={i + 6}
+          />
         </Col>
         <Col>
-          <Tile parentCallback={callbackFunction} key={i + 11} id={i + 11} />
+          <Tile
+            parentCallback={callbackFunction}
+            completedBoard={completedBoard}
+            key={i + 11}
+            id={i + 11}
+          />
         </Col>
         <Col>
-          <Tile parentCallback={callbackFunction} key={i + 16} id={i + 16} />
+          <Tile
+            parentCallback={callbackFunction}
+            completedBoard={completedBoard}
+            key={i + 16}
+            id={i + 16}
+          />
         </Col>
         <Col>
-          <Tile parentCallback={callbackFunction} key={i + 21} id={i + 21} />
+          <Tile
+            parentCallback={callbackFunction}
+            completedBoard={completedBoard}
+            key={i + 21}
+            id={i + 21}
+          />
         </Col>
       </Row>
     );
   }
-  return (<Container>
+  return (
+    <Container>
       {tileRows}
-      <Button variant="primary" onClick={completedBoard = kakuroAlgorithmn(childrenData)}>Complete Board</Button>
-      </Container>);
+      <Button variant="primary" onClick={() => completeBoard(setBoard)}>
+        Complete Board
+      </Button>
+    </Container>
+  );
 };
-export default board;
+export default Board;
