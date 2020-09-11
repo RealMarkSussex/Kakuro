@@ -5,7 +5,7 @@ const style = {
 };
 const handleKey = (event, props, submitted, setSubmitted) => {
   if (event.keyCode === 13) {
-    const value = event.target.value.replace(/\s/g, "").split(",");
+    const value = event.target.value.replace(/\s/g, "").split(",").map(x => +x);
     const childData = {
       value: value,
       position: props.id,
@@ -33,7 +33,7 @@ const Tile = (props) => {
   const [tileValue, setTileValue] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   useEffect(() => completedBoardChanged(setTileValue, props), [
-    props.completedBoard,
+    props,
   ]);
   return (
     <FormControl

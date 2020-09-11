@@ -4,7 +4,6 @@ import { Container, Col, Row, Button } from "react-bootstrap";
 import { kakuroAlgorithmn } from "../services/kakuroAlgorithmn";
 
 const childrenData = [];
-//let completedBoard = [];
 const callbackFunction = (childData, submitted) => {
   if (submitted) {
     let index = childrenData.findIndex(
@@ -23,7 +22,7 @@ const completeBoard = (setBoard) => {
 const Board = () => {
   const [completedBoard, setBoard] = useState([]);
   let tileRows = [];
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 6; i++) {
     tileRows.push(
       <Row>
         <Col>
@@ -56,6 +55,14 @@ const Board = () => {
             completedBoard={completedBoard}
             key={i + 16}
             id={i + 16}
+          />
+        </Col>
+        <Col>
+          <Tile
+            parentCallback={callbackFunction}
+            completedBoard={completedBoard}
+            key={i + 21}
+            id={i + 21}
           />
         </Col>
         <Col>
