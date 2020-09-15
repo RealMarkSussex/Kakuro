@@ -37,40 +37,40 @@ const Board = () => {
           <Tile
             parentCallback={callbackFunction}
             completedBoard={completedBoard}
-            key={i + 6}
-            id={i + 6}
+            key={i + 7}
+            id={i + 7}
           />
         </Col>
         <Col>
           <Tile
             parentCallback={callbackFunction}
             completedBoard={completedBoard}
-            key={i + 11}
-            id={i + 11}
+            key={i + 13}
+            id={i + 13}
           />
         </Col>
         <Col>
           <Tile
             parentCallback={callbackFunction}
             completedBoard={completedBoard}
-            key={i + 16}
-            id={i + 16}
+            key={i + 19}
+            id={i + 19}
           />
         </Col>
         <Col>
           <Tile
             parentCallback={callbackFunction}
             completedBoard={completedBoard}
-            key={i + 21}
-            id={i + 21}
+            key={i + 25}
+            id={i + 25}
           />
         </Col>
         <Col>
           <Tile
             parentCallback={callbackFunction}
             completedBoard={completedBoard}
-            key={i + 21}
-            id={i + 21}
+            key={i + 31}
+            id={i + 31}
           />
         </Col>
       </Row>
