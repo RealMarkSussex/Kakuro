@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Tile from "./tile";
 import { Container, Col, Row, Button } from "react-bootstrap";
-import { kakuroAlgorithmn } from "../services/kakuroAlgorithmn";
+import { kakuroAlgorithmn, isBoardCorrect } from "../services/kakuroAlgorithmn";
 
 const childrenData = [];
 const callbackFunction = (childData, submitted) => {
@@ -81,6 +81,9 @@ const Board = () => {
       {tileRows}
       <Button variant="primary" onClick={() => completeBoard(setBoard)}>
         Complete Board
+      </Button>
+      <Button variant="primary" onClick={() => console.log(isBoardCorrect(completedBoard))}>
+        Is Board Correct
       </Button>
     </Container>
   );

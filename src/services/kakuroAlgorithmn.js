@@ -2,6 +2,7 @@ export function kakuroAlgorithmn(childrenData) {
   let completedBoard = [];
   do {
     completedBoard = tryFillBoard(childrenData);
+    console.log(completedBoard);
   } while (!isBoardCorrect(completedBoard));
   return completedBoard;
 }
@@ -22,7 +23,7 @@ function tryFillBoard(childrenData) {
   return potentialBoard;
 }
 
-function isBoardCorrect(board) {
+export function isBoardCorrect(board) {
   const immutableTiles = board.filter((tile) => tile.value.length > 1);
   for (let index = 0; index < immutableTiles.length; index++) {
     const element = immutableTiles[index];
@@ -48,37 +49,34 @@ function isBoardCorrect(board) {
 function isColumnCorrect(board, element) {
   let i = element.position + 1;
   let total = 0;
-  while(i % 7 !== 0) {
+  while (i % 7 !== 0) {
     // eslint-disable-next-line
-    let tile = board.find(tile => {
+    let tile = board.find((tile) => {
       return tile.position === i;
     });
-    if(tile === undefined || tile.value.length > 1) {
+    if (tile === undefined || tile.value.length > 1) {
       break;
     }
     total += tile.value[0];
     i++;
-
   }
 
-  return (total === element.value[0]);
+  return total === element.value[0];
 }
 
 function isRowCorrect(board, element) {
   let i = element.position + 6;
   let total = 0;
-  while(i < 37) {
+  while (i < 37) {
     // eslint-disable-next-line
-    let tile = board.find(tile => {
+    let tile = board.find((tile) => {
       return tile.position === i;
     });
-    if(tile === undefined || tile.value.length > 1) {
+    if (tile === undefined || tile.value.length > 1) {
       break;
     }
     total += tile.value[0];
     i += 6;
-
   }
-  return (total === element.value[1]);
-
+  return total === element.value[1];
 }
